@@ -8,7 +8,18 @@ const userSchema = new Schema({
     }
 });
 
+
+
+
 userSchema.plugin(passportLocalMongoose); //Automatically include  hashed username hashed password
 module.exports = mongoose.model('User', userSchema);
+
+
+
+
+
+
+
+
 
 

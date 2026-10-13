@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") -%>
 <script>
     const maptoken = "<%=process.env.MAP_TOKEN%>"
-    const listing = <%- JSON.stringify(listingsData)%>
+    const listing = <%-JSON.stringify(listingsData)%>
 </script>
 <body>
 
@@ -13,12 +13,11 @@
         <img src=" <%=listingsData.image.url%>" class="card-img show-img" alt="listingsimage">
         <div class="card-body">
             <p class="card-text"> Owned by <i><%= listingsData.owner.username%> </i></p>
-           <p class="card-text"> <%= listingsData.description%> </p>
+            <p class="card-text"> <%= listingsData.description%> </p>
             <p class="card-text">&#8377; <%= listingsData.price.toLocaleString("en-IN")%> </p>
             <p class="card-text"> <%= listingsData.location%> </p>
             <p class="card-text"> <%= listingsData.country%> </p>
             <p class="card-text"> <%= listingsData.category%> </p>
-
         </div>
       </div>
     <br>

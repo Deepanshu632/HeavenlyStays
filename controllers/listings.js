@@ -21,7 +21,7 @@ module.exports.showListing = async(req,res)=>{
     .populate({path:"riviews",          //hum har reviews path ke sath ke sath uska author path bhi populate krna chahte hain
         populate:{
             path:"author"},
-        }).populate("owner");      
+        }).populate("owner");     
      if(!listingsData){
         req.flash("error","The listing you are trying to reach doesn't exist");
         res.redirect("/listings");
@@ -29,7 +29,6 @@ module.exports.showListing = async(req,res)=>{
     //  console.log(listingsData);
      res.render("listings/show.ejs",{listingsData});
     }
-
 
 
 module.exports.createListing = async(req,res,next) => {
@@ -76,10 +75,10 @@ module.exports.updateListing = async(req,res) => {
         req.flash("Success","Listing Updated");
         res.redirect(`/listings/${id}`);
         }
-
-    
+       
+       
         
-module.exports.destroyListing=async(req,res)=>{
+    module.exports.destroyListing=async(req,res)=>{
             let{id}=req.params;
             let deletedChat= await Listing.findByIdAndDelete(id);
             req.flash("Success","Listing Deleted");

@@ -17,8 +17,10 @@ upload.single('listing[image]'),validateListing,
 wrapAsync(listingController.createListing));
 
 
+
 //new route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
+
 
 //Show,update & Delete
 router

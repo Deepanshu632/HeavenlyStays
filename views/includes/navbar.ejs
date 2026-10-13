@@ -17,26 +17,48 @@
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
   }
+  .gradient-text {
+    font-size: larger;
+  background:linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8));
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;   
+  animation: gradientMove 6s ease infinite;
+}
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aesth{
+  background-color: #5d4429 !important;
+}
+.aesthcol{
+  color: #5d4429;
+
+}
 </style>
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass aesthcol"></i></a>
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
        data-bs-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
+        <span class=" navbar-toggler-icon "></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/listings">All Listings</a>
+          <a class="nav-link gradient-text " href="/listings">HeavenlyStays</a>
         </div>
         <div class="navbar-nav ms-auto">
           <form class="d-flex" role="search">
           <input class="form-control me-2 inp-search" type="search" placeholder="Search Destinations" >
-          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search </button>
+          <button class="btn btn-search aesth" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search </button>
         </form>
       </div>
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
+          <a class="nav-link  " href="/listings/new">Create Listing</a>
           <% if(!curr){ %>
           <a class="nav-link"  href="/signup"><b>Signup</b></a>
           <a class="nav-link" href="/login"><b>Login</b></a>

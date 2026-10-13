@@ -22,5 +22,6 @@
     console.log("data was initialized");
 };
 
+
 initDB();
 

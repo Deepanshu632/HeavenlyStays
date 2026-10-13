@@ -15,11 +15,14 @@ const flash = require("connect-flash");
 const passport= require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js")
- 
+ const initData = require("./init/data.js");
+ const Listing = require("./models/listing.js");
+//Routes for router object
 const listings = require("./routes/listing.js");
 const riviews  = require("./routes/riview.js");
 const Users = require("./routes/users.js");
 
+//ejs and public engine and middlewares
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
@@ -29,7 +32,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 
 const dbUrl = process.env.ATLAS_URL;
-
+ 
 main()
 .then((res)=>{
     console.log("connecion Successful");
@@ -43,6 +46,8 @@ main()
     await mongoose.connect(dbUrl);
  }
 
+ 
+
  const store = MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
@@ -51,23 +56,20 @@ main()
     touchAfter: 24 * 3600,
  })
 
+ 
  const sessionOptions = {
     store,
     secret:process.env.SECRET,
-    resave:"false",
-    saveUninitialized:"true",
+    resave:false,
+    saveUninitialized:true,
     cookie:{
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge:7 * 24 * 60 * 60 * 1000,
-    httpOnly:true,
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 1 week millisicond from now date
+    maxAge:7 * 24 * 60 * 60 * 1000,                // expiridate of a session (i.e;)after 7 days
+    httpOnly:true,                                 // for security ex cross site scripting attacks
     },
 };
 
 
-//  app.get("/",(req,res)=>{
-//  res.send("working");
-//  });
- 
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -93,9 +95,7 @@ app.use("/listings/:id/riviews",riviews);
 app.use("/",Users);
 
 
-// app.all("*",(req,res,next)=>{
-//     next(new ExpressError(404,"Page not found"));
-// });
+
 
 
 app.use((err,req,res,next)=>{
@@ -105,8 +105,11 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.listen(8080,()=>{
-    console.log("app is listening on port 8080");
+app.listen(3000,()=>{
+    console.log("app is listening on port 3000");
 });
+
+
+
 
 
